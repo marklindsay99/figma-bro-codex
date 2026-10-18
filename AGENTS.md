@@ -8,3 +8,7 @@ This repository packages a reusable Figma designer for Codex.
 - Run `python3 -m unittest discover -s tests -v` and `python3 scripts/check_package.py` after changes. Check the staged diff before committing.
 - Reference official Figma tooling and skills as dependencies; do not vendor their instructions, connector code, fonts or imagery.
 - Keep credentials, private examples, export archives and source project history out of every commit. Public release requires the owner's explicit visibility instruction and license decision.
+
+## Installation requests
+
+When asked to install this repository from its URL, read [installation](docs/INSTALLATION.md) and follow the full setup procedure. That installs both the personal skill and custom agent. Use the skill-only route only when requested. Verify the managed status and active project's duplicate definitions, and report any remaining Figma authentication or tooling requirement.

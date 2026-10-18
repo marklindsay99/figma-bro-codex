@@ -6,20 +6,30 @@ An independent adaptation, not the original Figma Bro template or an official Fi
 
 ## Install
 
-Requires Python 3.9+, Codex with personal custom-agent support and a connected official Figma plugin for design work. No third-party Python packages are needed.
+Paste this into Codex for the full setup:
 
-```sh
-python3 scripts/manage.py install
-python3 scripts/manage.py status --project /path/to/your/repository
+```text
+Install Figma Bro from https://github.com/marklindsay99/figma-bro-codex.
+Read its AGENTS.md and follow the full setup in docs/INSTALLATION.md to
+install both the skill and figma_bro custom agent. Preserve existing
+configuration and report any Figma connection still needed.
 ```
 
-The installer copies the skill to `~/.agents/skills/figma-bro/` and the personal role to `~/.codex/agents/figma-bro.toml`. It does not edit global config, connect accounts or change subscriptions. Existing unmanaged/edited files are refused unless you explicitly choose the documented backup-and-replace path. The installed copies do not depend on this checkout.
+Or install just the skill with one terminal command:
 
-Start a fresh Codex chat in your target repository. Ask:
+```sh
+npx skills add marklindsay99/figma-bro-codex --skill figma-bro --agent codex --global --copy
+```
 
-> Have figma_bro use $figma-bro to design this feature in the supplied Figma destination, inspect the relevant states and return a draft handoff.
+This uses the third-party [skills CLI](https://github.com/vercel-labs/skills), requires Node.js/npm and Git, and copies the skill and its references to `~/.agents/skills/figma-bro/`. No manual clone or Python is needed for this route. It does not install the optional custom agent. If you already used our full installer, keep using that installer for updates; do not install over its managed files with another tool.
 
-You can also invoke `$figma-bro` directly. Model/reasoning and integrations inherit from the parent session.
+Start a fresh Codex chat in your project and ask:
+
+> Use $figma-bro to design this feature in the supplied Figma destination, inspect the relevant states and return a draft handoff.
+
+For design work, install/connect the official Figma plugin and allow access to the destination file and libraries. The skill supplies the workflow; it does not bundle Figma tooling or credentials. See [tool requirements](skills/figma-bro/references/tools.md).
+
+The [full setup](docs/INSTALLATION.md#full-setup-skill-and-custom-agent) also installs `~/.codex/agents/figma-bro.toml` and provides backup, safe update and uninstall support. It requires Python 3.9+ and Codex with personal custom-agent support. After that setup you can ask Codex to have `figma_bro` use `$figma-bro`. Model/reasoning and integrations inherit from the parent session.
 
 ## Project context
 
@@ -29,13 +39,14 @@ See the [fictional brief](examples/brief.md), [example project instructions](exa
 
 ## Update and uninstall
 
+For the one-command skill installation:
+
 ```sh
-git pull --ff-only
-python3 scripts/manage.py update
-python3 scripts/manage.py uninstall
+npx skills update figma-bro --global
+npx skills remove figma-bro --global
 ```
 
-Update from a reviewed checkout. Modified installations are protected. Uninstall removes managed copies and restores any files present before the first install. Backups remain in `~/.codex/figma-bro-codex/backups/`. See [installation/recovery](docs/INSTALLATION.md), including duplicate project/user definitions.
+Preserve local edits first; removal removes this skill across agents in the chosen scope. For the full setup, use `scripts/manage.py update` or `uninstall` from your checkout; it protects modified installations and restores the pre-install baseline. See [installation/recovery](docs/INSTALLATION.md) for exact commands and switching between the two routes. Choose one manager for the same installation.
 
 ## Verification and provenance
 

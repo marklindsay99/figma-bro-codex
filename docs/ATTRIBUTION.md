@@ -7,6 +7,7 @@ The workflow was adapted from an earlier working project-scoped Codex port. Its 
 | Installer, tests, package checks, documentation, generic Codex skill/agent adapter and fictional examples authored for this package | Included | Copyright 2026 Mark Lindsay; [MIT](../LICENSE), applied with the owner's authorization on 18 October 2026 |
 | Figma Bro by John Bai, [public marketplace listing](https://x.ai/bot/marketplace/bots/figma-bro) | Workflow lineage attribution/link only | No redistribution license established; original bot instructions, memory excerpts, skills and exported originals are excluded and are not licensed by this package |
 | Official OpenAI/Codex and Figma skills, tool descriptions, connector implementations | Documented dependencies, not vendored files or copied manuals | Their upstream licenses and service terms apply; the MIT grant does not relicense them |
+| Vercel Labs [skills CLI](https://github.com/vercel-labs/skills) | Optional third-party installer invoked through npm; no CLI source bundled | Upstream license and terms apply; it installs the skill only |
 | Private project profiles, original bot export, design specs, handovers, validation captures, component keys and Figma file references | Excluded; retained by their project | Private and/or unresolved third-party rights; not part of this package |
 | Third-party imagery, brand marks, fonts and UI assets | None bundled | Obtain rights through the active project's own authorised resources |
 

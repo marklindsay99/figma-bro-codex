@@ -5,6 +5,7 @@ Tested with Codex CLI 0.163.0-alpha.10.2 and Python 3.9.6.
 | Check | Result |
 |---|---|
 | Standard-library lifecycle/recovery tests | 12 tests passed: 11 lifecycle/recovery and 1 installed-license check |
+| Standard skills CLI | Version 1.7.2 discovered the published skill; isolated project copy retained every skill file including references and LICENSE; update check and canonical-folder removal exercised |
 | Official Skill Creator frontmatter validation | Passed |
 | Source and installed personal-role TOML | Parsed; required fields and role name valid |
 | Codex app-server discovery from two repositories | Exactly one enabled figma-bro skill per context, at the personal installation |
