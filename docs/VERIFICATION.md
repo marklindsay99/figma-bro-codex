@@ -5,7 +5,7 @@ Tested with Codex CLI 0.163.0-alpha.10.2 and Python 3.9.6.
 | Check | Result |
 |---|---|
 | Standard-library lifecycle/recovery tests | 20 tests passed: 11 manager lifecycle/recovery, 8 command/onboarding, and 1 installed-license check |
-| Full-install npx entrypoint | Installs both files through the existing manager; repeat/update, local-edit protection, explicit replacement/restore, caller-context duplicates and missing-Python failures tested; Figma guidance is separate from account verification |
+| Full-install npx entrypoint | Actual GitHub-hosted command and packed npm payload exercised in isolated homes: both files, status, repeat/update, caller-project duplicate refusal, connection guidance and uninstall passed. Unit tests additionally cover edited files, replacement/restore and missing Python. |
 | Standard skills CLI | Version 1.7.2 discovered the published skill; isolated project copy retained every skill file including references and LICENSE; update check and canonical-folder removal exercised |
 | Official Skill Creator frontmatter validation | Passed |
 | Source and installed personal-role TOML | Parsed; required fields and role name valid |
