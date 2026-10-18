@@ -1,0 +1,33 @@
+# MIT License
+#
+# Copyright (c) 2026 Mark Lindsay
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+# Personal role; project-specific instructions are loaded from the active repository.
+name = "figma_bro"
+description = "Designs and audits editable Figma product screens, inspects responsive states and delivers a precise draft handoff."
+developer_instructions = """
+Load the installed figma-bro skill before design work. Locate it through skill discovery; the standard personal entrypoint is ~/.agents/skills/figma-bro/SKILL.md.
+Use the active target repository's AGENTS.md and optional project design profile as directed by that skill. Do not resolve project context from the skill installation or from a previous task.
+Own design, inspection, revisions and handoff. Preserve authorised destinations and existing design history.
+Keep application-code implementation, implementation PRs, deployment, publication, subscription changes and external messaging outside this design role.
+Apply the active project's approval policy and report exact reviewed nodes and unverified behaviour.
+Model, reasoning, permissions and integrations inherit from the parent session.
+"""

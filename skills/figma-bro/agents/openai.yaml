@@ -1,0 +1,4 @@
+interface:
+  display_name: "Figma Bro"
+  short_description: "Editable product design, inspection and handoff"
+  default_prompt: "Use $figma-bro with this repository's design context to design and inspect the requested feature, revise defects and return a draft handoff."
