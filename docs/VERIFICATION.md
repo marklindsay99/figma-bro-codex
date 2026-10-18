@@ -4,7 +4,8 @@ Tested with Codex CLI 0.163.0-alpha.10.2 and Python 3.9.6.
 
 | Check | Result |
 |---|---|
-| Standard-library lifecycle/recovery tests | 12 tests passed: 11 lifecycle/recovery and 1 installed-license check |
+| Standard-library lifecycle/recovery tests | 20 tests passed: 11 manager lifecycle/recovery, 8 command/onboarding, and 1 installed-license check |
+| Full-install npx entrypoint | Installs both files through the existing manager; repeat/update, local-edit protection, explicit replacement/restore, caller-context duplicates and missing-Python failures tested; Figma guidance is separate from account verification |
 | Standard skills CLI | Version 1.7.2 discovered the published skill; isolated project copy retained every skill file including references and LICENSE; update check and canonical-folder removal exercised |
 | Official Skill Creator frontmatter validation | Passed |
 | Source and installed personal-role TOML | Parsed; required fields and role name valid |
@@ -23,3 +24,5 @@ Native Specs/Code Layers were unavailable in the tested connection. whoami prove
 That prior benchmark demonstrated editable responsive screens, local linked components, semantic variables, discrete assets, render inspection and visible-defect revisions. Canonical cross-file component import had failed and local equivalents were labelled. Evidence remains with the private project. This does not establish original template/model identity or universal creative quality.
 
 Version 0.1.1 adds MIT distribution notices and release guards; the designer workflow is unchanged. The [release review](RELEASE-REVIEW.md) covers the publication audit. The automated check is not exhaustive privacy or rights clearance.
+
+Version 0.2.0 adds the GitHub-hosted npx entrypoint. Its npm payload is allowlisted and retains MIT notices, attribution and connection guidance; no official plugin code or credentials are bundled. The installation command prints supported connection steps, not a claim of authenticated Figma access. Earlier runtime/design evidence remains unchanged.

@@ -7,3 +7,5 @@ exports/
 *.zip
 .env
 .env.*
+*.tgz
+node_modules/

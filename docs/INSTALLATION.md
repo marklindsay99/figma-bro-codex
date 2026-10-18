@@ -1,52 +1,64 @@
 # Installation, updates and recovery
 
-## Quick install: skill only
+## Full setup: skill, custom agent and Figma guidance
 
-With Node.js/npm and Git installed:
+Requires Node.js 18+/npm, Git, Python 3.9+ available as `python3`, and Codex with personal custom-agent support. Run in the project you want to design for:
+
+```sh
+npx --yes github:marklindsay99/figma-bro-codex
+```
+
+This downloads the public GitHub package, installs both `~/.agents/skills/figma-bro/` and `~/.codex/agents/figma-bro.toml` through the existing Python manager, then displays the [Figma connection steps and verification prompt](CONNECTING-FIGMA.md). No npm registry publication or account is required. The manifest has no lifecycle scripts or runtime dependencies. `private: true` prevents accidental registry publication; it does not prevent installation from GitHub.
+
+The active project defaults to your calling directory, not the npm cache. Nested directories are checked through their Git root for duplicate definitions. To target a different project, append `--project /path/to/repository`. Project instructions and profiles stay in that project; installation does not modify them.
+
+Existing unmodified managed installations update safely. Edited or unmanaged files are refused with a concrete message. To inspect the installation or repeat the connection guide:
+
+```sh
+npx --yes github:marklindsay99/figma-bro-codex status
+npx --yes github:marklindsay99/figma-bro-codex connect
+```
+
+`connect` only displays guidance. Complete browser authentication through the official Figma plugin in Codex; the verification prompt checks live access in that chat. Installing local files does not authenticate Figma or prove file-edit permissions.
+
+## Updates and uninstall
+
+```sh
+npx --yes github:marklindsay99/figma-bro-codex update
+npx --yes github:marklindsay99/figma-bro-codex uninstall
+```
+
+These use the same installation state and backups as earlier full setups. They work without keeping a checkout. Rerunning the default command is idempotent when current. The explicit `update` requires a managed installation. Modified files remain protected, and uninstall restores the original baseline.
+
+## Existing skill-only installation
+
+Preserve local edits, then remove the skill using its original installer before the full setup. For the skills CLI, `npx skills remove figma-bro --global` removes that skill across agents in user scope; omit `--global` for project scope. Agent-specific removal can leave the shared canonical folder discoverable.
+
+Alternatively, after inspecting the existing files, `npx --yes github:marklindsay99/figma-bro-codex --replace` explicitly backs up and replaces unmanaged/edited targets. The prior files become the pre-install baseline and return on uninstall. This does not transfer another installer's lock metadata; stop updating these targets with that other installer while the full setup manages them. Symlinks and duplicate project/user definitions still require resolution first.
+
+## Manual fallback and install requests in Codex
+
+The standard-library Python installer remains available without Node.js:
+
+```sh
+git clone https://github.com/marklindsay99/figma-bro-codex.git
+cd figma-bro-codex
+python3 scripts/manage.py install --project /path/to/your/repository
+```
+
+Use `python3 scripts/manage.py update`, `status` or `uninstall` from that checkout for later operations, and read the [Figma connection guide](CONNECTING-FIGMA.md). Unlike the npx wrapper, direct Python calls only check projects explicitly supplied with `--project`.
+
+You can ask Codex: "Install Figma Bro from https://github.com/marklindsay99/figma-bro-codex. Read its AGENTS.md, install both the skill and custom agent, preserve existing configuration, and guide me through connecting Figma."
+
+When fulfilling that request as an agent: inspect this repository, follow the full setup, check the managed status and active project's duplicates, and report actual installation and connection results separately. Preserve edited/unmanaged files and resolve conflicts explicitly. Keep project instructions and design profiles in their project.
+
+## Skill-only alternative
 
 ```sh
 npx skills add marklindsay99/figma-bro-codex --skill figma-bro --agent codex --global --copy
 ```
 
-The third-party [skills CLI](https://github.com/vercel-labs/skills) discovers `skills/figma-bro/` and copies its instructions, references, metadata and MIT license to `~/.agents/skills/figma-bro/`. It does not copy this repository's custom agent or run our Python manager. Invoke `$figma-bro` directly. Figma's official plugin and account connection are separate prerequisites for design work.
-
-For a project-only install, omit `--global` and run in that project's root. Avoid installing the same skill at both project and user scope: Codex can discover both. `--copy` avoids a dependency on a symlink target or temporary checkout.
-
-Use the same manager for later operations, preserving local edits first:
-
-```sh
-npx skills list --agent codex --global
-npx skills update figma-bro --global
-npx skills remove figma-bro --global
-```
-
-Removal targets this skill across agents in the chosen scope. Omit `--agent codex` for removal: agent-specific removal can leave the shared canonical folder discoverable by Codex when other agents use it.
-
-Omit `--global` for list/remove of a project-only install; use `--project` instead of `--global` for its update. These operations have the skills CLI's behavior, not our manager's backup/rollback guarantees. Do not use these commands on a full setup managed by `scripts/manage.py`.
-
-## Full setup: skill and custom agent
-
-Requires Git, Python 3.9+ and Codex with personal custom-agent support. Ask Codex to install from this repository using the prompt in the [README](../README.md), or run:
-
-```sh
-git clone https://github.com/marklindsay99/figma-bro-codex.git
-cd figma-bro-codex
-python3 scripts/manage.py install
-```
-
-The full setup copies the skill to `~/.agents/skills/figma-bro/` and the custom agent to `~/.codex/agents/figma-bro.toml`. Installed copies work independently of the checkout.
-
-When fulfilling an install request as an agent: inspect a reviewed checkout, read this document, and check `python3 scripts/manage.py status --project /path/to/active/project` first. For an existing unmodified managed installation, use `update`; for an absent installation, use `install`. Stop before replacing edited/unmanaged files or resolving duplicates destructively. Report the installed paths, duplicate status and the actual Figma connection state. Keep project instructions and design profiles in the target project; installation does not authorize editing them.
-
-Update or uninstall from the retained checkout:
-
-```sh
-git pull --ff-only
-python3 scripts/manage.py update
-python3 scripts/manage.py uninstall
-```
-
-If transitioning from the skill-only route, first preserve any edits and remove that skill with its original installer, then run the full setup. If transitioning from the full setup, use its `uninstall` before the quick command. Uninstall can restore an earlier baseline: inspect the reported paths and any restored files before switching. Never use two managers to update the same targets.
+The third-party [skills CLI](https://github.com/vercel-labs/skills) copies the skill, references, metadata and license. It does not install the custom agent or run the full installer. Invoke `$figma-bro` directly and follow the [Figma connection guide](CONNECTING-FIGMA.md). Updates use `npx skills update figma-bro --global`; removal uses `npx skills remove figma-bro --global`. Preserve local edits first. Avoid duplicate project/user installs and two managers updating the same paths.
 
 ## Managed installation safety
 

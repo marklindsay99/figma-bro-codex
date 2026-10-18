@@ -1,0 +1,27 @@
+{
+  "name": "figma-bro-codex",
+  "version": "0.2.0",
+  "description": "Install the Figma Bro Codex skill and custom agent, with Figma connection guidance.",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marklindsay99/figma-bro-codex.git"
+  },
+  "bin": {
+    "figma-bro-codex": "bin/cli.cjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "AGENTS.md",
+    "VERSION",
+    "bin/",
+    "scripts/manage.py",
+    "skills/",
+    "agents/",
+    "docs/",
+    "examples/"
+  ]
+}

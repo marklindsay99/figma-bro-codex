@@ -11,4 +11,4 @@ This repository packages a reusable Figma designer for Codex.
 
 ## Installation requests
 
-When asked to install this repository from its URL, read [installation](docs/INSTALLATION.md) and follow the full setup procedure. That installs both the personal skill and custom agent. Use the skill-only route only when requested. Verify the managed status and active project's duplicate definitions, and report any remaining Figma authentication or tooling requirement.
+When asked to install this repository from its URL, read [installation](docs/INSTALLATION.md) and follow the full setup procedure. The GitHub-hosted npx command installs both the personal skill and custom agent, then shows the Figma connection guide. A Python fallback is documented. Use the skill-only route only when requested. Verify the managed status and active project's duplicate definitions, and report any remaining Figma authentication or tooling requirement.

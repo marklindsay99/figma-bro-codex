@@ -6,30 +6,30 @@ An independent adaptation, not the original Figma Bro template or an official Fi
 
 ## Install
 
-Paste this into Codex for the full setup:
-
-```text
-Install Figma Bro from https://github.com/marklindsay99/figma-bro-codex.
-Read its AGENTS.md and follow the full setup in docs/INSTALLATION.md to
-install both the skill and figma_bro custom agent. Preserve existing
-configuration and report any Figma connection still needed.
-```
-
-Or install just the skill with one terminal command:
+Run this from your project directory. Requires Node.js 18+/npm, Git, Python 3.9+ as `python3`, and Codex with personal custom-agent support:
 
 ```sh
-npx skills add marklindsay99/figma-bro-codex --skill figma-bro --agent codex --global --copy
+npx --yes github:marklindsay99/figma-bro-codex
 ```
 
-This uses the third-party [skills CLI](https://github.com/vercel-labs/skills), requires Node.js/npm and Git, and copies the skill and its references to `~/.agents/skills/figma-bro/`. No manual clone or Python is needed for this route. It does not install the optional custom agent. If you already used our full installer, keep using that installer for updates; do not install over its managed files with another tool.
+One command installs both:
+
+- The skill and its references at `~/.agents/skills/figma-bro/`.
+- The custom agent at `~/.codex/agents/figma-bro.toml`.
+
+Then it walks you through installing/connecting the official Figma plugin and gives you a verification prompt for a fresh Codex chat. Figma sign-in happens in its supported browser flow; the installer never handles credentials or claims the connection is verified. You can show the steps again with:
+
+```sh
+npx --yes github:marklindsay99/figma-bro-codex connect
+```
+
+The command downloads this GitHub package directly; no manual clone or separately published npm package is needed. It uses the existing reversible installer, checks your active project for duplicates, protects edited/unmanaged files, and retains backups. Installed files work independently of the download cache. See [installation and recovery](docs/INSTALLATION.md) and [Figma connection guide](docs/CONNECTING-FIGMA.md).
 
 Start a fresh Codex chat in your project and ask:
 
-> Use $figma-bro to design this feature in the supplied Figma destination, inspect the relevant states and return a draft handoff.
+> Have figma_bro use $figma-bro to design this feature in the supplied Figma destination, inspect the relevant states and return a draft handoff.
 
-For design work, install/connect the official Figma plugin and allow access to the destination file and libraries. The skill supplies the workflow; it does not bundle Figma tooling or credentials. See [tool requirements](skills/figma-bro/references/tools.md).
-
-The [full setup](docs/INSTALLATION.md#full-setup-skill-and-custom-agent) also installs `~/.codex/agents/figma-bro.toml` and provides backup, safe update and uninstall support. It requires Python 3.9+ and Codex with personal custom-agent support. After that setup you can ask Codex to have `figma_bro` use `$figma-bro`. Model/reasoning and integrations inherit from the parent session.
+Model/reasoning and integrations inherit from the parent session. The official Figma plugin, account/file permissions and required official skills are dependencies; see [tool requirements](skills/figma-bro/references/tools.md). A [skill-only installation](docs/INSTALLATION.md#skill-only-alternative) remains available through the standard skills CLI.
 
 ## Project context
 
@@ -39,14 +39,13 @@ See the [fictional brief](examples/brief.md), [example project instructions](exa
 
 ## Update and uninstall
 
-For the one-command skill installation:
-
 ```sh
-npx skills update figma-bro --global
-npx skills remove figma-bro --global
+npx --yes github:marklindsay99/figma-bro-codex update
+npx --yes github:marklindsay99/figma-bro-codex status
+npx --yes github:marklindsay99/figma-bro-codex uninstall
 ```
 
-Preserve local edits first; removal removes this skill across agents in the chosen scope. For the full setup, use `scripts/manage.py update` or `uninstall` from your checkout; it protects modified installations and restores the pre-install baseline. See [installation/recovery](docs/INSTALLATION.md) for exact commands and switching between the two routes. Choose one manager for the same installation.
+Updates protect local modifications; uninstall restores the pre-install baseline. These commands also manage earlier full installations made with `scripts/manage.py`. Keep using the original manager for skill-only installs until you follow the [migration instructions](docs/INSTALLATION.md). Choose one manager for the same files.
 
 ## Verification and provenance
 

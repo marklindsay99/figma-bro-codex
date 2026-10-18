@@ -6,9 +6,9 @@ import re
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
-TOP = {"AGENTS.md", "README.md", "VERSION", ".gitignore", "LICENSE-RECOMMENDATION.md", "LICENSE",
+TOP = {"AGENTS.md", "README.md", "VERSION", ".gitignore", "LICENSE-RECOMMENDATION.md", "LICENSE", "package.json", "bin",
        "skills", "agents", "examples", "docs", "scripts", "tests"}
-EXTENSIONS = {".md", ".py", ".json", ".yaml", ".toml"}
+EXTENSIONS = {".md", ".py", ".json", ".yaml", ".toml", ".cjs"}
 PATTERNS = [
     r"figma\.com/(?:design|file|proto)/[A-Za-z0-9]{10,}",
     r"-----BEGIN [A-Z ]*PRIVATE KEY-----",
